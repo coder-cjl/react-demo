@@ -1,8 +1,11 @@
 import { useEffect } from 'react'
 import { useNavigateRouter } from '../../routers/navigate'
+import { usePageTitle } from '../../utils/page-title'
 
 export function useMineViewModel() {
   const navigate = useNavigateRouter()
+
+  usePageTitle('Mine Page')
 
   useEffect(() => {
     const query = navigate.getQueryParam('query')

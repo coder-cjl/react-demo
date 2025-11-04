@@ -5,7 +5,9 @@ export function useNavigateRouter() {
   const searchParams = useSearchParams()[0]
 
   /// 返回上一级
+  /// 如果是根路径，则不进行任何操作
   function back(steps: number = -1) {
+    if (window.location.pathname === '/') return
     navigate(steps)
   }
 
