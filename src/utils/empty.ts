@@ -9,7 +9,7 @@ export function isObjectEmpty(obj: object): boolean {
 }
 
 /// 判断数组是否为空
-export function isArrayEmpty(arr: never[]): boolean {
+export function isArrayEmpty(arr: unknown[]): boolean {
   return arr.length === 0
 }
 
@@ -19,11 +19,11 @@ export function isStringEmpty(str: string): boolean {
 }
 
 /// 判断值是否为 null 或 undefined 或者 ""
-export function isNullOrUndefined(value: never): boolean {
+export function isNullOrUndefined(value: unknown): boolean {
   return value === null || value === undefined || value === ''
 }
 
 /// 判断值是否为有效值（非 null、非 undefined、非 ""）
-export function isValidValue(value: never): boolean {
+export function isValidValue(value: unknown): boolean {
   return !isNullOrUndefined(value)
 }
