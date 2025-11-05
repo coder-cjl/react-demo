@@ -1,6 +1,6 @@
 import type { AxiosError } from 'axios'
 import { Toast } from 'antd-mobile'
-import type { ErrorResponse, StandardResponse } from './types'
+import type { ApiResponse } from './types'
 
 /**
  * HTTP 状态码错误信息映射
@@ -56,11 +56,11 @@ const BUSINESS_ERROR_HANDLERS: Record<number, (message: string) => void> = {
 /**
  * 处理 HTTP 错误
  */
-export function handleHttpError(error: AxiosError): StandardResponse {
+export function handleHttpError(error: AxiosError): ApiResponse {
   if (error.response) {
     // 服务器返回了错误状态码
     const { status, data } = error.response
-    const errorData = data as ErrorResponse
+    const errorData = data as ApiResponse
 
     const message =
       errorData?.message ||
@@ -110,7 +110,7 @@ export function handleHttpError(error: AxiosError): StandardResponse {
 export function handleBusinessError(
   code: number,
   message: string
-): StandardResponse {
+): ApiResponse {
   // 执行特定业务码的处理
   const handler = BUSINESS_ERROR_HANDLERS[code]
   if (handler) {

@@ -1,4 +1,4 @@
-import { get } from '@/https/request'
+import { apiGet } from '@/https/request'
 import { useNavigateRouter } from '../../routers/navigate'
 import type { HomePageData } from './model'
 
@@ -10,7 +10,7 @@ export function useHomeViewModel() {
   }
 
   async function fetchData() {
-    const resp = await get<HomePageData>(
+    const resp = await apiGet<HomePageData>(
       '/home/data',
       {},
       {

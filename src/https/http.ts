@@ -4,7 +4,7 @@ import type {
   InternalAxiosRequestConfig,
 } from 'axios'
 import axios from 'axios'
-import type { ApiResponse, StandardResponse, RequestConfig } from './types'
+import type { ApiResponse, RequestConfig } from './types'
 import {
   handleHttpError,
   handleBusinessError,
@@ -91,7 +91,7 @@ http.interceptors.response.use(
     }
 
     // 成功响应
-    const result: StandardResponse = {
+    const result: ApiResponse = {
       isSuccess: true,
       data: apiResponse.data,
       message: apiResponse.message || '操作成功',
