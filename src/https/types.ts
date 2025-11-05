@@ -15,13 +15,13 @@ export interface ApiResponse<T = unknown> {
  */
 export interface RequestConfig extends AxiosRequestConfig {
   // 是否显示 loading
-  showLoading?: boolean
+  showLoading?: true | boolean
   // 是否显示错误提示
-  showError?: boolean
+  showError?: true | boolean
   // 自定义错误处理
   customErrorHandler?: (error: Error) => void
   // 是否需要 token
-  needToken?: boolean
+  needToken?: true | boolean
   // 重试次数
   retry?: number
   // 重试延迟（毫秒）

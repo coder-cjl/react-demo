@@ -10,14 +10,7 @@ export function useHomeViewModel() {
   }
 
   async function fetchData() {
-    const resp = await apiGet<HomePageData>(
-      '/home/data',
-      {},
-      {
-        showLoading: true,
-        showError: true,
-      }
-    )
+    const resp = await apiGet<HomePageData>('/home/data')
     if (resp.isSuccess) {
       console.log('Home page data:', resp.data)
     } else {
