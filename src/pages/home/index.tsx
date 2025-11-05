@@ -15,6 +15,9 @@ export function HomePage() {
           <LucaButton color='success' onClick={vm.goToMine}>
             To Mine
           </LucaButton>
+          <LucaButton color='primary' onClick={vm.fetchData}>
+            Fetch Data
+          </LucaButton>
         </LucaColumn>
       </LucaContainer>
     </>
