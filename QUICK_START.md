@@ -115,6 +115,27 @@ function handleDownload() {
 }
 ```
 
+### 7. 请求重试
+
+```typescript
+import { get } from '@/https/request'
+
+// 请求失败后自动重试 3 次，每次间隔 1 秒
+const response = await get(
+  '/api/data',
+  {},
+  {
+    retry: 3, // 重试次数
+    retryDelay: 1000, // 重试间隔（毫秒）
+  }
+)
+
+// 只对以下情况进行重试：
+// - 网络错误
+// - 请求超时
+// - 服务器错误（5xx）
+```
+
 ## 配置说明
 
 ### 环境变量

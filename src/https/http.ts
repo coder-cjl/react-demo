@@ -13,6 +13,48 @@ import {
 } from './errorHandler'
 
 /**
+ * 延迟函数
+ */
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
+/**
+ * 重试请求
+ */
+async function retryRequest(
+  error: AxiosError,
+  retryCount: number,
+  retryDelay: number
+): Promise<ApiResponse> {
+  const config = error.config as RequestConfig
+
+  // 如果没有配置重试次数或已达到重试上限
+  if (!config || retryCount <= 0) {
+    return Promise.reject(error)
+  }
+
+  // 初始化重试计数
+  config.__retryCount = config.__retryCount || 0
+
+  // 检查是否已达到最大重试次数
+  if (config.__retryCount >= retryCount) {
+    return Promise.reject(error)
+  }
+
+  // 增加重试计数
+  config.__retryCount += 1
+
+  console.log(
+    `请求失败，正在进行第 ${config.__retryCount}/${retryCount} 次重试...`
+  )
+
+  // 延迟后重试
+  await delay(retryDelay)
+
+  // 重新发起请求
+  return http.request(config)
+}
+
+/**
  * 创建 Axios 实例
  */
 const http: AxiosInstance = axios.create({
@@ -100,8 +142,31 @@ http.interceptors.response.use(
 
     return result as never
   },
-  (error: AxiosError) => {
+  async (error: AxiosError) => {
     const customConfig = error.config as RequestConfig
+
+    // 判断是否需要重试
+    const shouldRetry =
+      customConfig?.retry &&
+      customConfig.retry > 0 &&
+      // 只对网络错误、超时、5xx 错误进行重试
+      (!error.response ||
+        error.code === 'ECONNABORTED' ||
+        (error.response.status >= 500 && error.response.status < 600))
+
+    if (shouldRetry) {
+      try {
+        // 尝试重试请求
+        return await retryRequest(
+          error,
+          customConfig.retry!,
+          customConfig.retryDelay || 1000
+        )
+      } catch (retryError) {
+        // 重试失败，继续执行下面的错误处理
+        error = retryError as AxiosError
+      }
+    }
 
     // 隐藏 loading
     if (customConfig?.showLoading) {

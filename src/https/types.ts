@@ -26,4 +26,6 @@ export interface RequestConfig extends AxiosRequestConfig {
   retry?: number
   // 重试延迟（毫秒）
   retryDelay?: number
+  // 内部使用：当前重试计数
+  __retryCount?: number
 }
