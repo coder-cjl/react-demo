@@ -1,3 +1,4 @@
+import { get } from '@/https/request'
 import { useNavigateRouter } from '../../routers/navigate'
 import type { HomePageData } from './model'
 
@@ -8,7 +9,21 @@ export function useHomeViewModel() {
     navigate.toName('/mine', { query: 'fromHome', id: '123' })
   }
 
-  async function fetchData() {}
+  async function fetchData() {
+    const resp = await get<HomePageData>(
+      '/home/data',
+      {},
+      {
+        showLoading: true,
+        showError: true,
+      }
+    )
+    if (resp.isSuccess) {
+      console.log('Home page data:', resp.data)
+    } else {
+      console.error('Failed to fetch home page data:', resp.message)
+    }
+  }
 
   return {
     goToMine,
