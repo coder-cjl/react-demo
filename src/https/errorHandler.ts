@@ -26,10 +26,7 @@ const HTTP_ERROR_MESSAGES: Record<number, string> = {
 const BUSINESS_ERROR_HANDLERS: Record<number, (message: string) => void> = {
   // 未登录或 token 过期
   401: (message: string) => {
-    Toast.show({
-      icon: 'fail',
-      content: message || '登录已过期，请重新登录',
-    })
+    showErrorToast(message || '未授权，请重新登录')
     // 清除 token
     localStorage.removeItem('authToken')
     // 跳转到登录页
@@ -39,17 +36,11 @@ const BUSINESS_ERROR_HANDLERS: Record<number, (message: string) => void> = {
   },
   // 无权限
   403: (message: string) => {
-    Toast.show({
-      icon: 'fail',
-      content: message || '无权限访问',
-    })
+    showErrorToast(message || '无权限访问该资源')
   },
   // 服务器错误
   500: (message: string) => {
-    Toast.show({
-      icon: 'fail',
-      content: message || '服务器错误，请稍后重试',
-    })
+    showErrorToast(message || '服务器错误，请稍后重试')
   },
 }
 
@@ -82,10 +73,7 @@ export function handleHttpError(error: AxiosError): ApiResponse {
   } else if (error.request) {
     // 请求已发送但没有收到响应
     const message = '网络连接失败，请检查网络'
-    Toast.show({
-      icon: 'fail',
-      content: message,
-    })
+    showErrorToast(message)
     return {
       isSuccess: false,
       data: null,
@@ -117,10 +105,7 @@ export function handleBusinessError(
     handler(message)
   } else {
     // 默认显示错误提示
-    Toast.show({
-      icon: 'fail',
-      content: message || '操作失败',
-    })
+    showErrorToast(message)
   }
 
   return {
