@@ -1,4 +1,3 @@
-import { getApi } from '../../https/request'
 import { useNavigateRouter } from '../../routers/navigate'
 import type { HomePageData } from './model'
 
@@ -9,10 +8,7 @@ export function useHomeViewModel() {
     navigate.toName('/mine', { query: 'fromHome', id: '123' })
   }
 
-  async function fetchData() {
-    const data = await getApi<HomePageData>('/api/data')
-    console.log('Fetched data:', data.welcomeMessage)
-  }
+  async function fetchData() {}
 
   return {
     goToMine,
