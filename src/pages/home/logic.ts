@@ -2,7 +2,7 @@ import { apiGet } from '@/https/request'
 import { useNavigateRouter } from '../../routers/navigate'
 import type { HomePageData } from './model'
 
-export function useHomeViewModel() {
+export function useHomeLogic() {
   const navigate = useNavigateRouter()
 
   function goToMine() {

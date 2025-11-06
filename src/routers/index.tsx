@@ -1,7 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { HomePage } from '../pages/home'
-import { MinePage } from '../pages/mine'
+import { HomePage } from '../pages/home/view'
+import { MinePage } from '../pages/mine/view'
 import { Layout } from './layout'
+import SettingPage from '@/pages/setting/view'
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
       {
         path: '/mine',
         element: <MinePage />,
+      },
+      {
+        path: '/setting',
+        element: <SettingPage />,
       },
     ],
   },

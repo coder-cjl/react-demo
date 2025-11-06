@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigateRouter } from '../../routers/navigate'
 
-export function useMineViewModel() {
+export function useMineLogic() {
   const navigate = useNavigateRouter()
 
   useEffect(() => {
@@ -16,5 +16,9 @@ export function useMineViewModel() {
     navigate.back()
   }
 
-  return { onBack }
+  function onToSetting() {
+    navigate.toName('/setting')
+  }
+
+  return { onBack, onToSetting }
 }
