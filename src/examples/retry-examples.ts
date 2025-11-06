@@ -85,7 +85,7 @@ export async function example5() {
     // "请求失败，正在进行第 2/3 次重试..."
     // "请求失败，正在进行第 3/3 次重试..."
 
-    const response = await get(
+    const response = await apiGet(
       '/api/test',
       {},
       {
