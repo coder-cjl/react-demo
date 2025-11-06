@@ -12,7 +12,6 @@ interface LucaTextProps {
 export const LucaText = styled.span<LucaTextProps>`
   font-family: 'Luca', sans-serif;
   font-size: ${props => props.fontSize || '16px'};
-  color: ${props => props.color || '#000'};
   font-weight: ${props => (props.bold ? 'bold' : 'normal')};
   text-align: ${props => props.align || 'left'};
   line-height: ${props => props.lineHeight || '1.5'};
@@ -81,7 +80,7 @@ export const LucaContainer = styled.div<LucaContainerProps>`
   padding: ${props => props.padding || '0px'};
   width: ${props => props.width || 'auto'};
   height: ${props => props.height || 'auto'};
-  background-color: ${props => props.backgroundColor || 'white'};
+  // background-color: ${props => props.backgroundColor || 'white'};
   border-radius: ${props => props.borderRadius || '0px'};
   display: ${props => props.display || 'flex'};
   flex-direction: ${props => props.flexDirection || 'column'};

@@ -1,15 +1,17 @@
 import { LucaButton } from '@/styles/antd-style'
 import { LucaColumn, LucaText } from '@/styles/global-style'
 import useSettingLogic from './logic'
+import { useTheme } from '@/hooks/theme'
 
 export default function SettingPage() {
   const logic = useSettingLogic()
+  const theme = useTheme()
 
   return (
     <LucaColumn $align='center' $itemMargin='10px'>
       <LucaButton onClick={logic.onBack}>Back</LucaButton>
-      <LucaButton onClick={logic.onToggleTheme}>Setting Dark</LucaButton>
-      <LucaText>{logic.model.theme}</LucaText>
+      <LucaButton onClick={theme.toggleTheme}>Setting Dark</LucaButton>
+      <LucaText>{theme.theme}</LucaText>
     </LucaColumn>
   )
 }
