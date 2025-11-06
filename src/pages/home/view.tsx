@@ -18,6 +18,7 @@ export function HomePage() {
           <LucaButton color='primary' onClick={logic.fetchData}>
             Fetch Data
           </LucaButton>
+          <LucaButton onClick={logic.goToExport}>To Export Page</LucaButton>
         </LucaColumn>
       </LucaContainer>
     </>

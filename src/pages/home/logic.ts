@@ -19,8 +19,13 @@ export function useHomeLogic() {
     }
   }
 
+  function goToExport() {
+    navigate.toName('/export')
+  }
+
   return {
     goToMine,
     fetchData,
+    goToExport,
   }
 }

@@ -3,6 +3,7 @@ import { HomePage } from '../pages/home/view'
 import { MinePage } from '../pages/mine/view'
 import { Layout } from './layout'
 import SettingPage from '@/pages/setting/view'
+import { ExportPage } from '@/pages/export/view'
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: '/setting',
         element: <SettingPage />,
+      },
+      {
+        path: '/export',
+        element: <ExportPage />,
       },
     ],
   },
