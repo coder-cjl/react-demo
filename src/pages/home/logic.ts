@@ -1,6 +1,7 @@
 import { apiGet } from '@/https/request'
 import { useNavigateRouter } from '../../routers/navigate'
 import type { HomePageData } from './model'
+import { logger } from '@/utils/log'
 
 export function useHomeLogic() {
   const navigate = useNavigateRouter()
@@ -12,9 +13,9 @@ export function useHomeLogic() {
   async function fetchData() {
     const resp = await apiGet<HomePageData>('/home/data')
     if (resp.isSuccess) {
-      console.log('Home page data:', resp.data)
+      logger.debug('Home page data:', resp.data)
     } else {
-      console.error('Failed to fetch home page data:', resp.message)
+      logger.error('Failed to fetch home page data:', resp.message)
     }
   }
 

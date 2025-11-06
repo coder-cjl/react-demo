@@ -11,6 +11,7 @@ import {
   showLoading,
   hideLoading,
 } from './errorHandler'
+import { logger } from '@/utils/log'
 
 /**
  * 延迟函数
@@ -43,7 +44,7 @@ async function retryRequest(
   // 增加重试计数
   config.__retryCount += 1
 
-  console.log(
+  logger.warn(
     `请求失败，正在进行第 ${config.__retryCount}/${retryCount} 次重试...`
   )
 
