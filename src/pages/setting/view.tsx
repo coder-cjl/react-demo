@@ -1,7 +1,7 @@
-import { LucaButton } from '@/styles/antd-style'
 import { LucaColumn, LucaText } from '@/styles/global-style'
 import useSettingLogic from './logic'
 import { useTheme } from '@/hooks/theme'
+import { LucaButton } from '@/styles/antd-style'
 
 export default function SettingPage() {
   const logic = useSettingLogic()
