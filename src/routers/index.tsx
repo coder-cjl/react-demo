@@ -2,8 +2,8 @@ import { createBrowserRouter } from 'react-router-dom'
 import { HomePage } from '../pages/home/view'
 import { MinePage } from '../pages/mine/view'
 import { Layout } from './layout'
-import { SettingPage } from '../pages/setting/view'
 import { ExportPage } from '../pages/export/view'
+import SettingPage from '@/pages/setting/view'
 
 export const router = createBrowserRouter([
   {

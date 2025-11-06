@@ -22,48 +22,48 @@ export default defineConfig({
   },
 
   // 开发服务器配置
-  server: {
-    port: 3000,
-    open: true,
-    cors: true,
-    // 代理配置
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, ''),
-      },
-    },
-  },
+  // server: {
+  //   port: 3000,
+  //   open: true,
+  //   cors: true,
+  //   // 代理配置
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://localhost:8080',
+  //       changeOrigin: true,
+  //       rewrite: path => path.replace(/^\/api/, ''),
+  //     },
+  //   },
+  // },
 
   // 构建配置
-  build: {
-    outDir: 'dist',
-    sourcemap: false,
-    // 代码分割
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (
-              id.includes('react') ||
-              id.includes('react-dom') ||
-              id.includes('react-router')
-            ) {
-              return 'react-vendor'
-            }
-            if (
-              id.includes('antd-mobile') ||
-              id.includes('styled-components')
-            ) {
-              return 'ui-vendor'
-            }
-            return 'vendor'
-          }
-        },
-      },
-    },
-    // 消除打包大小超过警告
-    chunkSizeWarningLimit: 2000,
-  },
+  // build: {
+  //   outDir: 'dist',
+  //   sourcemap: false,
+  //   // 代码分割
+  //   rollupOptions: {
+  //     output: {
+  //       manualChunks(id) {
+  //         if (id.includes('node_modules')) {
+  //           if (
+  //             id.includes('react') ||
+  //             id.includes('react-dom') ||
+  //             id.includes('react-router')
+  //           ) {
+  //             return 'react-vendor'
+  //           }
+  //           if (
+  //             id.includes('antd-mobile') ||
+  //             id.includes('styled-components')
+  //           ) {
+  //             return 'ui-vendor'
+  //           }
+  //           return 'vendor'
+  //         }
+  //       },
+  //     },
+  //   },
+  //   // 消除打包大小超过警告
+  //   chunkSizeWarningLimit: 2000,
+  // },
 })
